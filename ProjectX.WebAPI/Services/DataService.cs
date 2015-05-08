@@ -12,6 +12,8 @@ using System.Web.Http.Description;
 using ProjectX.Data.Models;
 using System.Web.Http.Cors;
 using ProjectX.WebAPI.Services;
+using System.Web;
+using System.IO;
 
 namespace ProjectX.WebAPI.Services
 {
@@ -23,7 +25,7 @@ namespace ProjectX.WebAPI.Services
             db = context;
         }
 
-        public bool CopyGroupToAnother(int first , int second) 
+        public bool CopyGroupToAnother(int first, int second)
         {
             var firstGroup = db.EmailGroups.Include(a => a.Emails).FirstOrDefault(a => a.Id == first);
 
@@ -41,10 +43,43 @@ namespace ProjectX.WebAPI.Services
                     secondGroup.Emails.Add(item);
                 }
             }
-           
+
             db.SaveChanges();
             return true;
-        } 
+        }
 
+        public bool ProcessUploadedFile(int groupId, string uploadedFile)
+        {
+            using(var reader = new StreamReader(File.OpenRead(uploadedFile)))
+            {
+                Email tmp = null;
+                var group = db.EmailGroups.FirstOrDefault(a => a.Id == groupId);
+
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    string address = values[0];
+                    var email = db.Emails.Include(a => a.EmailGroups).FirstOrDefault(a => a.Address == address);
+                    
+                    if (email == null)
+                    {
+                        tmp = new Email { Address = values[0], FirstName = values[1], LastName = values[2], Title = values[3] };
+                        group.Emails.Add(tmp);
+                    }
+                    else
+                    {
+                        if(!email.EmailGroups.Any(g => g.Id == groupId)){
+                            group.Emails.Add(email);
+                        }
+                    }
+                }
+            };
+
+            File.Delete(uploadedFile);
+            
+            db.SaveChanges();
+            return true;
+        }
     }
 }

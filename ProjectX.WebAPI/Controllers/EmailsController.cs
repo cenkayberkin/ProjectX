@@ -12,6 +12,8 @@ using ProjectX.Data;
 using ProjectX.Data.Models;
 using System.Web.Http.OData;
 using System.Web.Http.Cors;
+using System.Web;
+using ProjectX.WebAPI.Services;
 
 namespace ProjectX.WebAPI.Controllers
 {
@@ -19,10 +21,12 @@ namespace ProjectX.WebAPI.Controllers
     public class EmailsController : ApiController
     {
         private PXContext db;
+        private DataService dservice;
 
-        public EmailsController(PXContext context)
+        public EmailsController(PXContext context,DataService service)
         {
             db = context;
+            dservice = service;
         }
 
         [EnableQuery()]
@@ -38,10 +42,14 @@ namespace ProjectX.WebAPI.Controllers
                          {
                              a.Id,
                              a.Address,
+                             a.Title,
+                             a.FirstName,
+                             a.LastName,
                              EmailGroups = a.EmailGroups.Select(x => new
                              {
                                  x.Id,
                                  x.Name
+                                 
                              }),
                              NumGroups = a.EmailGroups.Count()
                          })
@@ -101,8 +109,6 @@ namespace ProjectX.WebAPI.Controllers
             }
         }
 
-        
-
         // POST: api/Emails
         [ResponseType(typeof(Email))]
         public IHttpActionResult PostEmail(int EmailGroup, Email email)
@@ -137,6 +143,35 @@ namespace ProjectX.WebAPI.Controllers
 
         }
 
+        [Route("api/emails/uploadfile/{groupId}")]
+        [HttpPost]
+        public IHttpActionResult UploadMails(int groupId)
+        {
+            IHttpActionResult result = null;
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count > 0)
+            {
+                var postedFile = httpRequest.Files[0];
+                
+                var filePath = HttpContext.Current.Server.MapPath("~/tempFiles/" + postedFile.FileName);
+                postedFile.SaveAs(filePath);
+                
+                if (dservice.ProcessUploadedFile(groupId,filePath) == true) {
+                    result = Ok();
+                }
+                else
+                {
+                    result = Conflict();
+                }
+            }
+            else
+            {
+                result = BadRequest();
+            }
+
+            return result;
+        }
+
         // DELETE: api/Emails/5
         [ResponseType(typeof(Email))]
         public IHttpActionResult DeleteEmail(int id)
@@ -152,8 +187,6 @@ namespace ProjectX.WebAPI.Controllers
 
             return Ok(email);
         }
-
-       
 
         protected override void Dispose(bool disposing)
         {
