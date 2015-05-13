@@ -15,7 +15,7 @@ using ProjectX.WebAPI.Services;
 
 namespace ProjectX.WebAPI.Controllers
 {
-    [EnableCorsAttribute("*", "*", "*")]
+    [EnableCors("*", "*", "*")]
     public class EmailGroupsController : ApiController
     {
         private PXContext db;
@@ -38,11 +38,11 @@ namespace ProjectX.WebAPI.Controllers
                         {
                             a.Id,
                             a.Name,
-                            emails = a.Emails.Select(e => new
-                            {
-                                e.Id,
-                                e.Address
-                            }),
+                            //emails = a.Emails.Select(e => new
+                            //{
+                            //    e.Id,
+                            //    e.Address
+                            //}),
                             NumEmails = a.Emails.Count()
                         })
                      .ToList();

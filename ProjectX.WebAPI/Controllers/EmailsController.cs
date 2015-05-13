@@ -17,7 +17,7 @@ using ProjectX.WebAPI.Services;
 
 namespace ProjectX.WebAPI.Controllers
 {
-    [EnableCorsAttribute("*", "*", "*")]
+    [EnableCorsAttribute("http://localhost:1863", "*", "*")]
     public class EmailsController : ApiController
     {
         private PXContext db;

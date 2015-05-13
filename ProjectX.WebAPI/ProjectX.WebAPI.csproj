@@ -211,6 +211,7 @@
     <Compile Include="Controllers\EmailGroupsController.cs" />
     <Compile Include="Controllers\EmailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DbContext\PXContext.cs" />
     <Compile Include="DbContext\PXInitializer.cs" />
