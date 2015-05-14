@@ -18,3 +18,5 @@
 /// <reference path="../app/emailgroups/emailgrouplistctrl.js" />
 /// <reference path="../common/services/common.services.js" />
 /// <reference path="../common/services/emailgroupresource.js" />
+/// <reference path="angular-ui-router.min.js" />
+/// <reference path="../app/emailgroups/emailgroupdetailctrl.js" />

@@ -58,7 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\emailGroups\emailGroupDetailCtrl.js" />
+    <Content Include="app\emailGroups\emailGroupDetailView.html" />
     <Content Include="app\emailGroups\emailGroupListCtrl.js" />
+    <Content Include="app\emailGroups\emailGroupListView.html" />
+    <Content Include="app\welcomeView.html" />
     <Content Include="common\services\common.services.js" />
     <Content Include="common\services\emailGroupResource.js" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -98,6 +102,8 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\errors.json" />

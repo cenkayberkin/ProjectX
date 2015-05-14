@@ -79,7 +79,7 @@ namespace ProjectX.WebAPI.Controllers
                             e.Address
                         }),
                         NumGroups = a.Emails.Count()
-                    });
+                    }).FirstOrDefault();
 
                 return Ok(group);
             }
