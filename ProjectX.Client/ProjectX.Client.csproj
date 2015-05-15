@@ -60,11 +60,17 @@
     <Content Include="app\app.js" />
     <Content Include="app\emailGroups\emailGroupDetailCtrl.js" />
     <Content Include="app\emailGroups\emailGroupDetailView.html" />
+    <Content Include="app\emailGroups\emailGroupEditCtrl.js" />
+    <Content Include="app\emailGroups\emailGroupEditView.html" />
     <Content Include="app\emailGroups\emailGroupListCtrl.js" />
     <Content Include="app\emailGroups\emailGroupListView.html" />
+    <Content Include="app\emailGroups\emailGroupMergeCtrl.js" />
+    <Content Include="app\emailGroups\emailGroupMergeView.html" />
     <Content Include="app\welcomeView.html" />
     <Content Include="common\services\common.services.js" />
+    <Content Include="common\services\dataService.js" />
     <Content Include="common\services\emailGroupResource.js" />
+    <Content Include="common\services\emailResource.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -872,7 +878,10 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Scripts\underscore.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

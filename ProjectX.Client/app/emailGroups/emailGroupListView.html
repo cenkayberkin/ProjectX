@@ -14,21 +14,27 @@
             </li>
         </ol>
         <div class="table-responsive col-lg-3">
-            <table class="table table-hover" >
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Number of emails</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="emailGroup in vm.emailGroups">
                         <td><a ui-sref="emailGroupDetails({emailGroupId:emailGroup.id})">{{ emailGroup.name }}</a></td>
                         <td>{{ emailGroup.numEmails }}</td>
+                        <td><a class="btn btn-sm btn-danger" style="width:85px"><i class="glyphicon glyphicon-minus-sign"></i> Delete</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <a class="col-lg-offset-1 col-lg-2 btn btn-default" ui-sref="emailGroupMerge" style="width:160px"><i class="glyphicon glyphicon-copy"></i> Merge Groups</a>
+
+        <a class="col-lg-offset-1 col-lg-2 btn btn-default" ui-sref="emailGroupEdit({emailGroupId:0})" style="width:160px"><i class="glyphicon glyphicon-plus-sign"></i> Create new group</a>
+
     </div>
 </div>
 <!-- /.row -->

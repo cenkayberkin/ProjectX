@@ -1,0 +1,45 @@
+﻿<form class="form-horizontal"
+      name="emailGroupForm">
+    <fieldset>
+        <legend>Email group information</legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label"
+                   for="inputEmailGroupName">Email group name</label>
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputEmailGroupName"
+                       name="inputEmailGroupName"
+                       type="text"
+                       placeholder="Email group name (required)"
+                       ng-model="vm.emailGroup.name"
+                        />
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                <span>
+                    <button class="btn btn-primary"
+                            style="width:80px;margin-right:10px"
+                            ng-click="vm.submit()"
+                            >
+                        Save
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-default"
+                            style="width:70px"
+                            ng-click="vm.cancel(emailGroupForm)">
+                        Back
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-show="vm.message">
+            <div class="col-md-6">
+                <pre style="font: inherit">{{vm.message }}</pre>
+            </div>
+        </div>
+    </fieldset>
+</form>

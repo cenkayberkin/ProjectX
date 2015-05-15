@@ -76,7 +76,10 @@ namespace ProjectX.WebAPI.Controllers
                         emails = a.Emails.Select(e => new
                         {
                             e.Id,
-                            e.Address
+                            e.Address,
+                            e.FirstName,
+                            e.LastName,
+                            e.Title
                         }),
                         NumGroups = a.Emails.Count()
                     }).FirstOrDefault();

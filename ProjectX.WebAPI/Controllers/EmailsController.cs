@@ -173,16 +173,27 @@ namespace ProjectX.WebAPI.Controllers
         }
 
         // DELETE: api/Emails/5
+
+        [Route("api/emails/{groupid}/{id}")]
         [ResponseType(typeof(Email))]
-        public IHttpActionResult DeleteEmail(int id)
+        public IHttpActionResult DeleteEmail(int groupid, int id)
         {
+            var group = db.EmailGroups.Include(a => a.Emails).FirstOrDefault(a => a.Id == groupid);
+            
             Email email = db.Emails.Find(id);
+            
             if (email == null)
             {
                 return NotFound();
             }
 
-            db.Emails.Remove(email);
+            if (!group.Emails.Contains(email))
+            {
+                return NotFound();
+            }
+
+            group.Emails.Remove(email);
+
             db.SaveChanges();
 
             return Ok(email);

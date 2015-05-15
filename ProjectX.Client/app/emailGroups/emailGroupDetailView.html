@@ -13,20 +13,47 @@
                 <i class="fa fa-file"></i> Email Groups
             </li>
         </ol>
-
-        <div class="panel panel-primary">
+        <div class="form-group"
+             ng-show="vm.message">
+            <div class="col-md-6">
+                <pre style="font: inherit">{{vm.message }}</pre>
+            </div>
+        </div>
+        <div class=" col-lg-8 panel panel-primary">
             <div class="panel-heading" style="font-size:large">
                 {{ vm.title }}
             </div>
             <div class="panel-body">
-                <div ng-repeat="email in vm.emailGroup.emails">
-                    {{ email.address }}
-                </div>        
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Email Address</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Prefix</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="email in vm.emailGroup.emails">
+                                <td>{{ email.id }}</td>
+                                <td>{{ email.address }}</td>
+                                <td>{{ email.firstName }}</td>
+                                <td>{{ email.lastName }}</td>
+                                <td>{{ email.title }}</td>
+                                <td><a class="btn btn-sm btn-danger" ng-click="vm.emailDelete({id: email.id })" style="width:85px"><i class="glyphicon glyphicon-minus-sign"></i> Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
-        <div class="panel-footer">
+
+        <div class="panel-footer col-lg-12">
             <a class="btn btn-default" ui-sref="emailGroupList" style="width:80px"><i class="glyphicon glyphicon-chevron-left"></i> Back</a>
-            <a class="btn btn-primary" ui-sref="emailGroupEdit({ emailGroupId: vm.emailGroup.Id })" style="width:80px;margin-left:10px"> Edit</a>
 
         </div>
     </div>

@@ -25,7 +25,12 @@
                 url: "/emailgroups/edit/:emailGroupId",
                 templateUrl: "app/emailGroups/emailGroupEditView.html",
                 controller: "EmailGroupEditCtrl as vm"
+            })
+            .state("emailGroupMerge", {
+                url: "/emailGroupMerge",
+                templateUrl: "app/emailGroups/emailGroupMergeView.html",
+                controller: "EmailGroupMergeCtrl as vm"
             });
-
+        
     }]);
 })();
