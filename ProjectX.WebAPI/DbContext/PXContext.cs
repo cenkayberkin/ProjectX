@@ -34,11 +34,7 @@ namespace ProjectX.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            modelBuilder.Entity<Email>()
-               .HasMany(t => t.EmailGroups)
-               .WithMany(t => t.Emails);
-
+            
           
             base.OnModelCreating(modelBuilder);
         }

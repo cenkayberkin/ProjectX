@@ -168,11 +168,10 @@ namespace ProjectX.WebAPI.Controllers
         [ResponseType(typeof(EmailGroup))]
         public IHttpActionResult DeleteEmailGroup(int id)
         {
-            EmailGroup emailGroup = db.EmailGroups.Find(id);
-            if (emailGroup == null)
-            {
-                return NotFound();
-            }
+            EmailGroup emailGroup = db.EmailGroups.FirstOrDefault(a => a.Id == id);
+            
+            var emails = db.Emails.Where(a => a.EmailGroups.All(i => i.Id == id));
+            db.Emails.RemoveRange(emails);
 
             db.EmailGroups.Remove(emailGroup);
             db.SaveChanges();

@@ -21,6 +21,6 @@ namespace ProjectX.Data.Models
         [Required]
         public string Name { get; set; }
 
-        public ICollection<Email> Emails { get; set; }
+        public ICollection<Email>   Emails { get; set; }
     }
 }

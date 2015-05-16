@@ -54,7 +54,8 @@ namespace ProjectX.WebAPI.Services
             {
                 Email tmp = null;
                 var group = db.EmailGroups.FirstOrDefault(a => a.Id == groupId);
-
+               
+                //csv mapper i kullan.
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
