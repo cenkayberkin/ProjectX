@@ -1,0 +1,57 @@
+﻿<form class="form-horizontal"
+      name="messageForm">
+    <fieldset>
+        <legend>{{vm.title}}</legend>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label"
+                   for="inputMessageSubject">Message subject</label>
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputMessageSubject"
+                       name="inputMessageSubject"
+                       type="text"
+                       placeholder="Message Subject (required)"
+                       ng-model="vm.message.subject" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label"
+                   for="inputMessageSubject">Message Body</label>
+            <div class="col-md-10">
+                <textarea ckeditor="editorOptions" id="inputMessageBody"
+                          name="inputMessageBody"
+                          type="text"
+                          placeholder="Message Body (required)"
+                          ng-model="vm.message.body"></textarea>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                <span>
+                    <button class="btn btn-primary"
+                            style="width:80px;margin-right:10px"
+                            ng-click="vm.submit()">
+                        Save
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-default"
+                            style="width:70px"
+                            ng-click="vm.cancel(messageForm)">
+                        Back
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-show="vm.VMmessage">
+            <div class="col-md-6">
+                <pre style="font: inherit">{{vm.VMmessage }}</pre>
+            </div>
+        </div>
+    </fieldset>
+</form>

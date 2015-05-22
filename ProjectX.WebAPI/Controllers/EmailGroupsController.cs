@@ -12,6 +12,7 @@ using ProjectX.Data;
 using ProjectX.Data.Models;
 using System.Web.Http.Cors;
 using ProjectX.WebAPI.Services;
+using EntityFramework.Extensions;
 
 namespace ProjectX.WebAPI.Controllers
 {
@@ -169,9 +170,8 @@ namespace ProjectX.WebAPI.Controllers
         public IHttpActionResult DeleteEmailGroup(int id)
         {
             EmailGroup emailGroup = db.EmailGroups.FirstOrDefault(a => a.Id == id);
-            
-            var emails = db.Emails.Where(a => a.EmailGroups.All(i => i.Id == id));
-            db.Emails.RemoveRange(emails);
+
+            db.Emails.Where(a => a.EmailGroups.All(i => i.Id == id)).Delete();
 
             db.EmailGroups.Remove(emailGroup);
             db.SaveChanges();

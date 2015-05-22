@@ -1,0 +1,42 @@
+﻿<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Messages
+            <small>Listing</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-file"></i> Messages
+            </li>
+        </ol>
+        <div class="form-group"
+             ng-show="vm.VMmessage">
+            <div class="col-md-8">
+                <pre style="font: inherit">{{vm.VMmessage }}</pre>
+            </div>
+        </div>
+
+        <div class="table-responsive col-lg-5">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="message in vm.Messages">
+                        <td><a ui-sref="messageEdit({messageId: message.id})">{{ message.subject }}</a></td>
+                        <td><a class="btn btn-sm btn-danger" ng-click="vm.messageDelete(message.id)" style="width:85px"><i class="glyphicon glyphicon-minus-sign"></i> Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a class="col-lg-offset-1 col-lg-2 btn btn-default" ui-sref="messageEdit({messageId:0})" style="width:160px"><i class="glyphicon glyphicon-plus-sign"></i> New Message</a>
+    </div>
+</div>
+<!-- /.row -->

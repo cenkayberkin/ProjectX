@@ -13,6 +13,6 @@
         });
 
         vm.title = 'EmailGroupListCtrl';
-
+        //delete i yap buraya.
     }
 })();

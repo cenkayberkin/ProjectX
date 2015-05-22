@@ -77,6 +77,13 @@
                     <li>
                         <a ui-sref="emailGroupEdit({emailGroupId:0})"><i class="fa fa-newspaper-o"></i>Add Email Group</a>
                     </li>
+                    <li class="active">
+                        <a ui-sref="messageList"><i class="fa fa-envelope-o"></i> Messages</a>
+                    </li>
+                    
+                    <li>
+                        <a ui-sref="messageEdit({messageId:0})"><i class="fa fa-newspaper-o"></i>Add Message</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -98,22 +105,28 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="Scripts/bootstrap.min.js"></script>
 
+    <script src="ckeditor/ckeditor.js"></script>
+
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular-resource.min.js"></script>
     <script src="Scripts/angular-ui-router.min.js"></script>
-
-
+    <script src="Scripts/ng-file-upload-shim.min.js"></script>
+    <script src="Scripts/ng-file-upload-all.min.js"></script>
+    <script src="CK2/ng-ckeditor.js"></script>
 
     <script src="common/services/common.services.js"></script>
     <script src="common/services/emailGroupResource.js"></script>
     <script src="common/services/emailResource.js"></script>
     <script src="common/services/dataService.js"></script>
-
+    <script src="common/services/messageResource.js"></script>
 
     <script src="app/app.js"></script>
     <script src="app/emailGroups/emailGroupListCtrl.js"></script>
     <script src="app/emailGroups/emailGroupDetailCtrl.js"></script>
     <script src="app/emailGroups/emailGroupEditCtrl.js"></script>
     <script src="app/emailGroups/emailGroupMergeCtrl.js"></script>
+
+    <script src="app/messages/messageEditCtrl.js"></script>
+    <script src="app/messages/messageListCtrl.js"></script>
 </body>
 </html>

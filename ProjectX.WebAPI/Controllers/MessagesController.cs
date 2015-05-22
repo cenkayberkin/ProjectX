@@ -11,9 +11,11 @@ using System.Web.Http.Description;
 using ProjectX.Data;
 using ProjectX.Data.Models;
 using System.Web.Http.OData;
+using System.Web.Http.Cors;
 
 namespace ProjectX.WebAPI.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class MessagesController : ApiController
     {
         private PXContext db;
@@ -55,7 +57,7 @@ namespace ProjectX.WebAPI.Controllers
                         return NotFound();
                     }
 
-                    msg = db.Messages.Where(a => a.Id == id);
+                    msg = db.Messages.Where(a => a.Id == id).FirstOrDefault();
                     
                 }
                 else

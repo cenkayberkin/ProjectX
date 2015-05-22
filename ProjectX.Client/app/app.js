@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var app = angular.module('app', ["common.services", "ui.router"]);
+    var app = angular.module('app', ["common.services", "ui.router", "ngFileUpload", "ngCkeditor"]);
 
     app.config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
@@ -30,6 +30,16 @@
                 url: "/emailGroupMerge",
                 templateUrl: "app/emailGroups/emailGroupMergeView.html",
                 controller: "EmailGroupMergeCtrl as vm"
+            })
+            .state("messageEdit", {
+                url: "/messageEdit/:messageId",
+                templateUrl: "app/messages/messageEditView.html",
+                controller: "MessageEditCtrl as vm"
+            })
+            .state("messageList", {
+                url: "/messages",
+                templateUrl: "app/messages/messageListView.html",
+                controller: "MessageListCtrl as vm"
             });
         
     }]);
