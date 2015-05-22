@@ -13,7 +13,7 @@
         });
 
         vm.title = 'Messages';
-        // delete i buraya yap.
+       
 
         vm.messageDelete = function (messageId) {
             vm.VMmessage = "Deleting ...";

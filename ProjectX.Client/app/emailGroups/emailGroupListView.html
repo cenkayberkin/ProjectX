@@ -13,7 +13,8 @@
                 <i class="fa fa-file"></i> Email Groups
             </li>
         </ol>
-        <div class="table-responsive col-lg-3">
+        
+        <div class="table-responsive col-lg-6">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -26,7 +27,7 @@
                     <tr ng-repeat="emailGroup in vm.emailGroups">
                         <td><a ui-sref="emailGroupDetails({emailGroupId:emailGroup.id})">{{ emailGroup.name }}</a></td>
                         <td>{{ emailGroup.numEmails }}</td>
-                        <td><a class="btn btn-sm btn-danger" style="width:85px"><i class="glyphicon glyphicon-minus-sign"></i> Delete</a></td>
+                        <td><a class="btn btn-sm btn-danger" ng-click="vm.groupDelete(emailGroup.id)" style="width:85px"><i class="glyphicon glyphicon-minus-sign"></i> Delete</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -38,3 +39,11 @@
     </div>
 </div>
 <!-- /.row -->
+<div class="row">
+    <div class="form-group "
+         ng-show="vm.message">
+        <div class="col-lg-6">
+            <pre style="font: inherit">{{vm.message }}</pre>
+        </div>
+    </div>
+</div>

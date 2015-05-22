@@ -169,14 +169,29 @@ namespace ProjectX.WebAPI.Controllers
         [ResponseType(typeof(EmailGroup))]
         public IHttpActionResult DeleteEmailGroup(int id)
         {
-            EmailGroup emailGroup = db.EmailGroups.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                EmailGroup emailGroup = db.EmailGroups.FirstOrDefault(a => a.Id == id);
 
-            db.Emails.Where(a => a.EmailGroups.All(i => i.Id == id)).Delete();
+                if (emailGroup == null)
+                {
+                    return BadRequest();
+                }
 
-            db.EmailGroups.Remove(emailGroup);
-            db.SaveChanges();
 
-            return Ok(emailGroup);
+                db.Emails.Where(a => a.EmailGroups.All(i => i.Id == id)).Delete();
+
+                db.EmailGroups.Remove(emailGroup);
+                db.SaveChanges();
+
+                return Ok(emailGroup);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+                
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

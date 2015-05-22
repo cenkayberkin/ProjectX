@@ -13,6 +13,20 @@
         });
 
         vm.title = 'EmailGroupListCtrl';
-        //delete i yap buraya.
+      
+        vm.groupDelete = function (id) {
+            vm.message = "Deleting ...";
+            emailGroupResource.delete({ id: id }, function (data) {
+                vm.message = "Email group " + data.name + " deleted";
+                vm.emailGroups = _.filter(vm.emailGroups, function (item) {
+
+                    return item.id != id;
+                });
+
+            }, function (error) {
+                vm.message = "Could not delete";
+            });
+
+        };
     }
 })();
