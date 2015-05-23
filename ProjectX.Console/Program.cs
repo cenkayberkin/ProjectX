@@ -1,4 +1,5 @@
 ﻿using ProjectX.Data;
+using ProjectX.WebAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,13 @@ namespace ProjectX.Console
     {
         static void Main(string[] args)
         {
-
-            System.Console.WriteLine("Welcome to SMC");
-
-            PXContext db = new PXContext();
-            var msg = db.Messages.First();
-
-            System.Console.WriteLine(msg.Body);
-
-            System.Console.ReadLine();
-
+            SesService service = new SesService();
+            
+            for (int i = 0; i < 30; i++)
+            {
+                System.Console.WriteLine(service.SendEmail(new Data.Models.Email(), new Data.Models.Message()));    
+            }
+            
         }
     }
 }

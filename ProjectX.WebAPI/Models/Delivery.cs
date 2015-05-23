@@ -11,6 +11,11 @@ namespace ProjectX.Data.Models
     
     public class Delivery
     {
+        public Delivery()
+        {
+            Jobs = new List<Job>();
+        }
+
         public int Id { get; set; }
 
         [ForeignKey("Message")]
@@ -22,6 +27,8 @@ namespace ProjectX.Data.Models
 
         [ForeignKey("Group")]
         public int GroupId { get; set; }
+
+        public ICollection<Job> Jobs { get; set; }
 
         public EmailGroup Group { get; set; }
 

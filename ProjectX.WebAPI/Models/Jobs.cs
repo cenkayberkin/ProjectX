@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectX.Data.Models
 {
-   
+
     public class Job
     {
         public int Id { get; set; }
@@ -17,6 +17,11 @@ namespace ProjectX.Data.Models
         public int DeliveryId { get; set; }
         public Delivery Delivery { get; set; }
         public string EmailAddress { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public string Title { get; set; }
+
         public JobStatus Status { get; set; }
     }
 }

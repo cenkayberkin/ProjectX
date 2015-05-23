@@ -70,7 +70,7 @@ namespace ProjectX.WebAPI.App_Start
         {
             kernel.Bind<PXContext>().To<PXContext>().InRequestScope();
             kernel.Bind<DataService>().To<DataService>().InRequestScope();
-
+            kernel.Bind<SesService>().To<SesService>().InRequestScope();
         }
     }
 }
