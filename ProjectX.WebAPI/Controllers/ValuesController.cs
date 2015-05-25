@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
 using ProjectX.Data;
+using Hangfire;
 
 namespace ProjectX.WebAPI.Controllers
 {
@@ -16,24 +17,27 @@ namespace ProjectX.WebAPI.Controllers
         }
 
         // GET api/values
-        public IEnumerable<object> Get()
+        public IHttpActionResult Get()
         {
-            var query = _ctx.EmailGroups
-                        .Include(a => a.Emails)
-                        .Select(a => new
-                        {
-                            Name = a.Name,
-                            Emails = a.Emails,
-                            EmailAddresses = a.Emails.Select(x => new
-                            {
-                                x.Id,
-                                x.Address
-                            }),
-                            NumberOfEmails = a.Emails.Count()
-                        });
+            //var query = _ctx.EmailGroups
+            //            .Include(a => a.Emails)
+            //            .Select(a => new
+            //            {
+            //                Name = a.Name,
+            //                Emails = a.Emails,
+            //                EmailAddresses = a.Emails.Select(x => new
+            //                {
+            //                    x.Id,
+            //                    x.Address
+            //                }),
+            //                NumberOfEmails = a.Emails.Count()
+            //            });
 
-            return query;
+            //return query;
+
+            return Ok();
         }
+
 
         // GET api/values/5
         public string Get(int id)

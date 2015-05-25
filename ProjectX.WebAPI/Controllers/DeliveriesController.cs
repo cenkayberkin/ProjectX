@@ -81,7 +81,7 @@ namespace ProjectX.WebAPI.Controllers
         }
 
         [Route("api/delivery/{emailGroup}/{message}")]
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult SendDelivery(int emailGroup, int message)
         {
             try

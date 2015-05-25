@@ -12,12 +12,7 @@ namespace ProjectX.Console
     {
         static void Main(string[] args)
         {
-            SesService service = new SesService();
-            
-            for (int i = 0; i < 30; i++)
-            {
-                System.Console.WriteLine(service.SendEmail(new Data.Models.Email(), new Data.Models.Message()));    
-            }
+           
             
         }
     }

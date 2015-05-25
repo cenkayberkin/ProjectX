@@ -12,7 +12,7 @@ namespace ProjectX.Data
     public class PXContext : DbContext
     {
         public PXContext()
-            : base("DefaultConnection")
+            : base("ProjectXConnection")
             
         {
             Database.SetInitializer<PXContext>(new PXInitializer());

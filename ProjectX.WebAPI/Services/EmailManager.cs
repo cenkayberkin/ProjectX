@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.Entity;
+using Hangfire;
 
 namespace ProjectX.WebAPI.Services
 {
@@ -49,25 +50,38 @@ namespace ProjectX.WebAPI.Services
 
             db.SaveChanges();
 
-            var jobs = db.Jobs.Where(a => a.DeliveryId == delivery.Id);
+            BackgroundJob.Enqueue(() => RunTasks(messageId,delivery.Id));
+        }
 
-            foreach (var item in jobs)
+        public static void RunTasks(int messageId, int deliveryId)
+        {
+            SesService service = new SesService();
+            using (PXContext db = new PXContext())
             {
-                //Replace first name and last name with specified fields in message.
-                var result = service.SendEmail(item.EmailAddress, message);
-                if (result)
+                var message = db.Messages.FirstOrDefault(a => a.Id == messageId);
+                var delivery = db.Deliveries.FirstOrDefault(a => a.Id == deliveryId);
+
+                var jobs = db.Jobs.Where(a => a.DeliveryId == delivery.Id && a.Status == JobStatus.Pending).ToList();
+
+                foreach (var item in jobs)
                 {
-                    item.Status = JobStatus.Sent;
+                    //Replace first name and last name with specified fields in message.
+                    var result = service.SendEmail(item.EmailAddress, message);
+                    if (result)
+                    {
+                        item.Status = JobStatus.Sent;
+                    }
+                    else
+                    {
+                        item.Status = JobStatus.Error;
+                    }
+                    db.SaveChanges();
                 }
-                else
-                {
-                    item.Status = JobStatus.Error;
-                }
+
+                delivery.Status = DeliveryStatus.Finished;
                 db.SaveChanges();
             }
-            
-            delivery.Status = DeliveryStatus.Finished;
-            db.SaveChanges();
+        
         }
     }
 }
