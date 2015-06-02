@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProjectX.Data.Models
 {
-    public class Message
+    public class EmailMessage
     {
         public int Id { get; set; }
 

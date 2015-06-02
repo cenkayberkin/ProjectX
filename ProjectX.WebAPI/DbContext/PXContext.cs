@@ -24,7 +24,7 @@ namespace ProjectX.Data
         
         public DbSet<Email> Emails { get; set; }
         public DbSet<Job> Jobs { get; set; }
-        public DbSet<Message> Messages { get; set; }
+        public DbSet<EmailMessage> Messages { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         
 

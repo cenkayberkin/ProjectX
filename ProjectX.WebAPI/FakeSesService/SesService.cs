@@ -15,7 +15,7 @@ namespace ProjectX.WebAPI
             random = new Random();
         }
 
-        public bool SendEmail(string email, Message message)
+        public bool SendEmail(string email, EmailMessage message)
         {
             Thread.Sleep(1000);
 

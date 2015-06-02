@@ -26,7 +26,7 @@ namespace ProjectX.WebAPI.Controllers
         }
 
         [EnableQuery()]
-        [ResponseType(typeof(Message))]
+        [ResponseType(typeof(EmailMessage))]
         public IHttpActionResult GetMessages()
         {
             try
@@ -41,7 +41,7 @@ namespace ProjectX.WebAPI.Controllers
         }
 
         // GET: api/Messages/5
-        [ResponseType(typeof(Message))]
+        [ResponseType(typeof(EmailMessage))]
         public IHttpActionResult GetMessage(int id)
         {
             try
@@ -62,7 +62,7 @@ namespace ProjectX.WebAPI.Controllers
                 }
                 else
                 {
-                    msg = new Message();
+                    msg = new EmailMessage();
                 }
 
                 return Ok(msg);
@@ -75,7 +75,7 @@ namespace ProjectX.WebAPI.Controllers
 
         // PUT: api/Messages/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutMessage(int id, Message message)
+        public IHttpActionResult PutMessage(int id, EmailMessage message)
         {
             if (!ModelState.IsValid)
             {
@@ -109,8 +109,8 @@ namespace ProjectX.WebAPI.Controllers
         }
 
         // POST: api/Messages
-        [ResponseType(typeof(Message))]
-        public IHttpActionResult PostMessage(Message message)
+        [ResponseType(typeof(EmailMessage))]
+        public IHttpActionResult PostMessage(EmailMessage message)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace ProjectX.WebAPI.Controllers
                 message = db.Messages.Add(message);
                 db.SaveChanges();
 
-                return Created<Message>(Request.RequestUri + message.Id.ToString(), message);
+                return Created<EmailMessage>(Request.RequestUri + message.Id.ToString(), message);
             }
             catch (Exception ex)
             {
@@ -136,10 +136,10 @@ namespace ProjectX.WebAPI.Controllers
         }
 
         // DELETE: api/Messages/5
-        [ResponseType(typeof(Message))]
+        [ResponseType(typeof(EmailMessage))]
         public IHttpActionResult DeleteMessage(int id)
         {
-            Message message = db.Messages.Find(id);
+            EmailMessage message = db.Messages.Find(id);
             if (message == null)
             {
                 return NotFound();

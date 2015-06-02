@@ -11,10 +11,10 @@ namespace ProjectX.Data
     {
         protected override void Seed(PXContext context)
         {
-            var messages = new List<Message> 
+            var messages = new List<EmailMessage> 
             {
-                new Message { Body = "Bu birinci mesaj", Tags="Okul|Ev" , Subject = string.Format("Hey {0}",DateTime.Now.ToShortTimeString()) },
-                new Message { Body = "Bu ikinci mesaj", Tags="Pazar|Is" , Subject = string.Format("Hey {0}",DateTime.Now.ToShortTimeString())}
+                new EmailMessage { Body = "Bu birinci mesaj", Tags="Okul|Ev" , Subject = string.Format("Hey {0}",DateTime.Now.ToShortTimeString()) },
+                new EmailMessage { Body = "Bu ikinci mesaj", Tags="Pazar|Is" , Subject = string.Format("Hey {0}",DateTime.Now.ToShortTimeString())}
             };
             
             messages.ForEach(m => context.Messages.Add(m));
@@ -25,18 +25,35 @@ namespace ProjectX.Data
 
             List<Email> mails = new List<Email> {};
             Email tmp = null;
-            for (int i = 0; i < 100; i++)
+
+            Random e = new Random();
+            
+            for (int i = 0; i < 70; i++)
             {
+
                 tmp = new Email() 
-                { 
-                    Address=Faker.Internet.Email(),
+                {
+                    Address = e.Next(10) < 7 ? "success@simulator.amazonses.com" : "bounce@simulator.amazonses.com",
                     FirstName = Faker.Name.First(),
                     LastName = Faker.Name.Last(),
                     Title = Faker.Name.Prefix()
                 };
                 mails.Add(tmp);
             }
-            
+
+            for (int i = 0; i < 30; i++)
+            {
+
+                tmp = new Email()
+                {
+                    Address = e.Next(10) < 5 ? "success@simulator.amazonses.com" : "complaint@simulator.amazonses.com",
+                    FirstName = Faker.Name.First(),
+                    LastName = Faker.Name.Last(),
+                    Title = Faker.Name.Prefix()
+                };
+                mails.Add(tmp);
+            }
+
             mails.ForEach(a => context.Emails.Add(a));
             context.SaveChanges();
 

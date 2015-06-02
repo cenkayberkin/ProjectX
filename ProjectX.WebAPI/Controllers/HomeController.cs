@@ -10,7 +10,7 @@ namespace ProjectX.WebAPI.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "This is Projext X";
 
             return View();
         }

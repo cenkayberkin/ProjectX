@@ -21,7 +21,7 @@ namespace ProjectX.Data.Models
         [ForeignKey("Message")]
         public int MessageId { get; set; }
         
-        public Message Message { get; set; }
+        public EmailMessage Message { get; set; }
 
         public DateTime Time { get; set; }
 
